@@ -1,6 +1,3 @@
-let playerSelection = prompt("rock, paper, or scissors?")
-let computerSelection = rockPaperScissors()
-
 function rockPaperScissors() {
     let int = Math.floor(Math.random() * 3)
     if (int == 0) {
@@ -21,8 +18,9 @@ function rockPaperScissors() {
     }
 }
 
-function playRound(
-    playerSelection=playerSelection, computerSelection=computerSelection) {
+function playRound() {
+    let playerSelection = prompt("rock, paper, or scissors?")
+    let computerSelection = rockPaperScissors()
     if (playerSelection == "rock") {
         if (computerSelection == "rock") {
             let result = "TIE"
@@ -69,11 +67,25 @@ function playRound(
 
 function game() {
     let playerWins = 0
-    let ComputerWins = 0
-    while (playerWins < 3 || ComputerWins < 3) {
-        playRound()
+    let computerWins = 0
+    while (playerWins < 3 && computerWins < 3) {
+        result = playRound()
         if (result == "WIN") {
             playerWins++
         }
+        else if (result == "LOSS") {
+            computerWins++
+        }
+        else {
+        }
+        console.log(result)
+    }
+    if (playerWins == 3) {
+        console.log("You win the game!")
+    }
+    else {
+        console.log("You lose the game!")
     }
 }
+
+game()
