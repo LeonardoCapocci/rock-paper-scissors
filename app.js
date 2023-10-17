@@ -1,70 +1,79 @@
-playerSelection = prompt("rock, paper, or scissors?")
-computerSelection = rockPaperScissors()
+let playerSelection = prompt("rock, paper, or scissors?")
+let computerSelection = rockPaperScissors()
 
 function rockPaperScissors() {
-    int = Math.floor(Math.random() * 3)
+    let int = Math.floor(Math.random() * 3)
     if (int == 0) {
-        response = "rock"
+        let response = "rock"
         return response
     }
     else if (int == 1) {
-        response = "paper"
+        let response = "paper"
         return response
     }
     else if (int == 2) {
-        response = "scissors"
+        let response = "scissors"
         return response
     }
     else {
-        response = "something's wrong"
+        let response = "something's wrong"
         return response
     }
 }
 
-function playRound(playerSelection, computerSelection) {
+function playRound(
+    playerSelection=playerSelection, computerSelection=computerSelection) {
     if (playerSelection == "rock") {
         if (computerSelection == "rock") {
-            result = "TIE"
+            let result = "TIE"
             return result
         }
         if (computerSelection == "paper") {
-            result = "LOSS"
+            let result = "LOSS"
             return result
         }
         if (computerSelection == "scissors") {
-            result = "WIN"
+            let result = "WIN"
             return result
         }
     }
     else if (playerSelection == "paper") {
         if (computerSelection == "rock") {
-            result = "WIN"
+            let result = "WIN"
             return result
         }
         if (computerSelection == "paper") {
-            result = "TIE"
+            let result = "TIE"
             return result
         }
         if (computerSelection == "scissors") {
-            result = "LOSS"
+            let result = "LOSS"
             return result
         }
     }
     else if (playerSelection == "scissors") {
         if (computerSelection == "rock") {
-            result = "LOSS"
+            let result = "LOSS"
             return result
         }
         if (computerSelection == "paper") {
-            result = "WIN"
+            let result = "WIN"
             return result
         }
         if (computerSelection == "scissors") {
-            result = "TIE"
+            let result = "TIE"
             return result
         }
     }
 }
 
-console.log("computer selection: " + computerSelection)
-console.log(playRound(playerSelection, computerSelection))
+function game() {
+    let playerWins = 0
+    let ComputerWins = 0
+    while (playerWins < 3 || ComputerWins < 3) {
+        playRound()
+        if (result == "WIN") {
+            playerWins++
+        }
+    }
+}
