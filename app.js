@@ -1,57 +1,97 @@
 function rockPaperScissors() {
-    let int = Math.floor(Math.random() * 3)
-    let response = ''
+    let int = Math.floor(Math.random() * 3);
+    let response = '';
     if (int == 0) {
-        response = "rock"
+        response = "rock";
     }
     else if (int == 1) {
-        response = "paper"
+        response = "paper";
     }
     else if (int == 2) {
-        response = "scissors"
+        response = "scissors";
     }
-    return response
+    return response;
 }
 
-function playRound() {
-    let playerSelection = "rock"
-    let computerSelection = rockPaperScissors()
-    let result = ''
+const userWins = document.querySelector("#user-wins")
+userWins.innerHTML = 0
+const botWins = document.querySelector("#computer-wins")
+botWins.innerHTML = 0
+
+function playRound(rps) {
+    let playerSelection = rps;
+    let computerSelection = rockPaperScissors();
+    let result = '';
+    const roundResult = document.querySelector("#round-result");
+
+
     if (playerSelection == "rock") {
         if (computerSelection == "rock") {
-            result = "TIE"
+            result = "TIE";
         }
         if (computerSelection == "paper") {
-            result = "LOSS"
+            result = "LOSS";
         }
         if (computerSelection == "scissors") {
-            result = "WIN"
+            result = "WIN";
         }
     }
     else if (playerSelection == "paper") {
         if (computerSelection == "rock") {
-            result = "WIN"
+            result = "WIN";
         }
         if (computerSelection == "paper") {
-            result = "TIE"
+            result = "TIE";
         }
         if (computerSelection == "scissors") {
-            result = "LOSS"
+            result = "LOSS";
         }
     }
     else if (playerSelection == "scissors") {
         if (computerSelection == "rock") {
-            result = "LOSS"
+            result = "LOSS";
         }
         if (computerSelection == "paper") {
-            result = "WIN"
+            result = "WIN";
         }
         if (computerSelection == "scissors") {
-            result = "TIE"
+            result = "TIE";
         }
     }
-    return result
+
+    if (result == "WIN") {
+        userWins.innerHTML ++
+    }
+    else if (result == "LOSS") botWins.innerHTML ++
+
+    if (userWins.innerHTML == 5) {
+        result = "YOU WIN!"
+        userWins.innerHTML = 0
+        botWins.innerHTML = 0
+    }
+    else if (botWins.innerHTML == 5) {
+        result = "YOU LOSE!"
+        userWins.innerHTML = 0
+        botWins.innerHTML = 0
+    }
+
+    roundResult.innerHTML = result;
+    return console.log(result);
+
+
 }
+
+
+const rock = document.querySelector('#rock');
+rock.addEventListener('click', () => playRound("rock"));
+
+const paper = document.querySelector('#paper');
+paper.addEventListener('click', () => playRound("paper"));
+
+const scissors = document.querySelector('#scissors');
+scissors.addEventListener('click', () => playRound("scissors"));
+
+
 
 function game() {
     let playerWins = 0
@@ -76,5 +116,3 @@ function game() {
         console.log("You lose the game!")
     }
 }
-
-game()
